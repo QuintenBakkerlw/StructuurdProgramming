@@ -1,4 +1,5 @@
 import random
+'test'
 "opdracht 1 - Piramide"
 
 # length = 15

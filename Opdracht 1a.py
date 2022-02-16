@@ -13,7 +13,7 @@ def piramide(length):
         ## maakt tweede helft van de piramide
     for i in range(length - 1, 0, -1):
         print(i * '*')
-    return 'Your Piramide'
+    return
 
 print(piramide(length))
 

@@ -37,7 +37,7 @@ def randomProductCategory():
 
 def tableMakerCategory():
     # Variabele aanmaken voor alle tables en hun inhoud
-    tables = (
+    table = (
         """create table productCategory(
                 product_id varchar, 
                 brand varchar,
@@ -56,14 +56,16 @@ def tableMakerCategory():
                 primary key(product_id)
             );
         """)
-    cur.execute(tables)
+    cur.execute(table)
     # Commit de commando's
     conn.commit()
 
 def inserter():
     ### insert van product de producten met dezelfde category in productcategory ###
-    datainserter = ("INSERT INTO productcategory SELECT * FROM product WHERE category = 'Gezond & verzorging'")
-    cur.execute(datainserter)
+    category = randomProductCategory()
+    print(category)
+    datainserter = ("INSERT INTO productcategory SELECT * FROM product WHERE category = (%s) ")
+    cur.execute(datainserter, (category,))
     return
 
 def runAll():

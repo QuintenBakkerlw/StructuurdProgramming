@@ -15,3 +15,5 @@ De laaste functie activeerd alle functies.
 
 Opmerkingen:
 Aan het begin van de scrip dropped de nieuwe table.
+
+![image](https://user-images.githubusercontent.com/94842376/160163129-0b2cb5d9-f688-4166-bec4-08038b30901a.png)

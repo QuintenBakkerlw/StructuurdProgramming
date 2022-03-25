@@ -17,9 +17,6 @@ cur.execute(product)
 cur.execute("""DROP TABLE productcategory""")
 
 
-
-
-
 def randomProductCategory():
     x = False
     ### select van product een random row ###
@@ -63,18 +60,20 @@ def tableMakerCategory():
 def inserter():
     ### insert van product de producten met dezelfde category in productcategory ###
     category = randomProductCategory()
-    print(category)
     datainserter = ("INSERT INTO productcategory SELECT * FROM product WHERE category = (%s) ")
     cur.execute(datainserter, (category,))
     return
 
 def runAll():
     ### runt alle functies ###
-    print(randomProductCategory())
     print(tableMakerCategory())
     print(inserter())
+
+
 print(runAll())
 print("\nAFGEROND\n")
+
+
 # Commit de commando's
 conn.commit()
 

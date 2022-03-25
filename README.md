@@ -14,5 +14,4 @@ De laaste functie activeerd alle functies.
 
 
 Opmerkingen:
-Bij de inserte heb ik het niet werked gekregen dat die de category van de randomgenerator pakt. Hierdoor is dat stukje gehard code.
 Aan het begin van de scrip dropped de nieuwe table.

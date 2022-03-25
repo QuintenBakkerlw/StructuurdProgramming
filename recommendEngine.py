@@ -13,37 +13,66 @@ cur = conn.cursor()
 product = ('''SELECT * FROM product''')
 
 cur.execute(product)
+### droped table, maakt het makelijker om te testen ###
+cur.execute("""DROP TABLE productcategory""")
 
 
 
 
-def randomProduct():
+
+def randomProductCategory():
     x = False
+    ### select van product een random row ###
     while x == False:
         randomproduct = ("""SELECT * FROM product
                                 ORDER BY RANDOM()
                                 LIMIT 1""")
         cur.execute(randomproduct)
         randomP = cur.fetchone()
+        ### pakt van de random row een colum van category, als het null is dan probeerd die een andere row ###
         if randomP[7] != None:
             x = True
     return randomP[7]
 
 
-print(randomProduct())
+def tableMakerCategory():
+    # Variabele aanmaken voor alle tables en hun inhoud
+    tables = (
+        """create table productCategory(
+                product_id varchar, 
+                brand varchar,
+                gender varchar,
+                herhaalaankopen bool,
+                _name varchar,
+                selling_price integer,
+                stock integer,
+                category varchar,
+                sub_category varchar,
+                sub_sub_category varchar,
+                weekdeal bool,
+                product_size varchar,
+                promos varchar,
+                product_type varchar,
+                primary key(product_id)
+            );
+        """)
+    cur.execute(tables)
+    # Commit de commando's
+    conn.commit()
 
+def inserter():
+    ### insert van product de producten met dezelfde category in productcategory ###
+    datainserter = ("INSERT INTO productcategory SELECT * FROM product WHERE category = 'Gezond & verzorging'")
+    cur.execute(datainserter)
+    return
 
-# record = cur.fetchmany(10)
-# x = 0
-# for row in record:
-#     x += 1
-#     print(f"printing {x} row \n")
-#     print("_id = ", row[0],)
-#     print("brand = ", row[1],)
-#     print('category = ', row[7],)
-#     print('sub_category = ', row[8],)
-#     print("price = ", row[5], "\n")
-
+def runAll():
+    ### runt alle functies ###
+    print(randomProductCategory())
+    print(tableMakerCategory())
+    print(inserter())
+print(runAll())
+print("\nAFGEROND\n")
 # Commit de commando's
 conn.commit()
 
